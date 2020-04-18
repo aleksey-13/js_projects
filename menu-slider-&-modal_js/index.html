@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <title>Menu slider & modal</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="human" />
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact Me</a></li>
+      </ul>
+    </nav>
+    <header>
+      <button id="toggle" class="toggle">
+        <i class="fa fa-bars fa-2x"></i>
+      </button>
+
+      <h1>My landing page</h1>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam,
+        cupiditate!
+      </p>
+
+      <button class="cta-btn" id="open">Sign Up</button>
+    </header>
+
+    <div class="container">
+      <h2>What is this landing page about?</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+        assumenda aut laborum magni molestias obcaecati reiciendis, repellat
+        suscipit! A animi autem cumque, distinctio eos eveniet maiores nesciunt
+        odit quisquam sit!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad, eum
+        laborum mollitia provident quaerat? Corporis facilis itaque quia
+        voluptatum?
+      </p>
+
+      <h2>Tell more</h2>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+        assumenda aut laborum magni molestias obcaecati reiciendis, repellat
+        suscipit! A animi autem cumque, distinctio eos eveniet maiores nesciunt
+        odit quisquam sit!
+      </p>
+
+      <h2>Benefits</h2>
+      <ul>
+        <li>Lifetime Access</li>
+        <li>Lifetime Access</li>
+        <li>Lifetime Access</li>
+      </ul>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad, eum
+        laborum mollitia provident quaerat? Corporis facilis itaque quia
+        voluptatum?
+      </p>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-container" id="modal">
+      <div class="modal">
+        <button class="close-btn" id="close">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="modal-header">
+          <h3>Sign up</h3>
+        </div>
+        <div class="modal-content">
+          <p>Register with is to get offers, support and more</p>
+          <form class="modal-form">
+            <div>
+              <label for="name">Name</label
+              ><input type="text" id="name" placeholder="Enter name" />
+            </div>
+            <div>
+              <label for="email">Email</label
+              ><input type="email" id="email" placeholder="Enter email" />
+            </div>
+            <div>
+              <label for="password">Password</label
+              ><input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+              />
+            </div>
+            <div>
+              <label for="password2">Confirm password</label
+              ><input
+                type="password"
+                id="password2"
+                placeholder="Enter password2"
+              />
+            </div>
+            <input type="submit" value="Submit" class="submit-btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
