@@ -1,25 +1,28 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: #323232;
-    font-family: 'Press Start 2P', Consolas, monospace;
-    color: #fff;
+  background-color: #323232;
+  font-family: "Press Start 2P", Consolas, monospace;
+  color: #fff;
 }
 
 #root {
-    padding: 3rem;
-    text-align: center
+  padding: 3rem;
+  text-align: center;
 }
 
-#root h1 span {
-    text-transform: uppercase;
+#root h1 {
+  text-transform: uppercase;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 
 #root canvas {
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
