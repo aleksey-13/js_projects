@@ -4,7 +4,15 @@ import View from "../src/view.js";
 const root = document.getElementById("root");
 
 const game = new Game();
-const view = new View(root, 320, 640, 20, 10);
+
+const configPlayField = {
+  width: 320,
+  height: 640,
+  rows: 20,
+  columns: 10,
+};
+
+const view = new View(root, configPlayField);
 
 window.game = game;
 window.view = view;

@@ -7,41 +7,8 @@ export default class Game {
     row: 20,
   };
   playField = this.createPlayField();
-  activePiece = {
-    x: 0,
-    y: 0,
-    /*    get blocks() {
-      return this.rotations[this.rotationIndex];
-    },*/
-    blocks: [
-      [0, 1, 0],
-      [1, 1, 1],
-      [0, 0, 0],
-    ],
-    /* rotationIndex: 0,
-    rotations: [
-      [
-        [0, 1, 0],
-        [1, 1, 1],
-        [0, 0, 0],
-      ],
-      [
-        [0, 1, 0],
-        [0, 1, 1],
-        [0, 1, 0],
-      ],
-      [
-        [0, 0, 0],
-        [1, 1, 1],
-        [0, 1, 0],
-      ],
-      [
-        [0, 1, 0],
-        [1, 1, 0],
-        [0, 1, 0],
-      ],
-    ],*/
-  };
+  activePiece = this.createPiece();
+  nextPiece = this.createPiece();
 
   createPlayField() {
     const playField = [];
@@ -55,6 +22,73 @@ export default class Game {
     }
 
     return playField;
+  }
+
+  createPiece() {
+    const index = Math.floor(Math.random() * 7);
+    const type = "IJLOSTZ"[index];
+    const piece = {};
+
+    switch (type) {
+      case "I":
+        piece.blocks = [
+          [0, 0, 0, 0],
+          [1, 1, 1, 1],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+        ];
+        break;
+      case "J":
+        piece.blocks = [
+          [0, 0, 0],
+          [2, 2, 2],
+          [0, 0, 2],
+        ];
+        break;
+      case "L":
+        piece.blocks = [
+          [0, 0, 0],
+          [3, 3, 3],
+          [3, 0, 0],
+        ];
+        break;
+      case "O":
+        piece.blocks = [
+          [0, 0, 0, 0],
+          [0, 4, 4, 0],
+          [0, 4, 4, 0],
+          [0, 0, 0, 0],
+        ];
+        break;
+      case "S":
+        piece.blocks = [
+          [0, 0, 0],
+          [0, 5, 5],
+          [5, 5, 0],
+        ];
+        break;
+      case "T":
+        piece.blocks = [
+          [0, 0, 0],
+          [6, 6, 6],
+          [0, 6, 0],
+        ];
+        break;
+      case "Z":
+        piece.blocks = [
+          [0, 0, 0],
+          [7, 7, 0],
+          [0, 7, 7],
+        ];
+        break;
+      default:
+        throw new Error("Неизестный тип фигуры");
+    }
+
+    piece.x = Math.floor((this.sizePlayField.col - piece.blocks[0].length) / 2);
+    piece.y = -1;
+
+    return piece;
   }
 
   getState() {
@@ -101,6 +135,7 @@ export default class Game {
     if (this.hasCollision()) {
       this.activePiece.y -= 1;
       this.lockPiece();
+      this.updatePieces();
     }
   }
 
@@ -198,5 +233,10 @@ export default class Game {
         }
       }
     }
+  }
+
+  updatePieces() {
+    this.activePiece = this.nextPiece;
+    this.nextPiece = this.createPiece();
   }
 }
