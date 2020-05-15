@@ -6,30 +6,9 @@ export default class Game {
     col: 10,
     row: 20,
   };
-  playField = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
+  playField = this.createPlayField();
   activePiece = {
-    x: 9,
+    x: 0,
     y: 0,
     /*    get blocks() {
       return this.rotations[this.rotationIndex];
@@ -65,14 +44,39 @@ export default class Game {
   };
 
   createPlayField() {
+    const playField = [];
     const { row, col } = this.sizePlayField;
 
     for (let r = 0; r < row; r++) {
-      this.playField.push([]);
+      playField.push([]);
       for (let c = 0; c < col; c++) {
-        this.playField[r].push(0);
+        playField[r].push(0);
       }
     }
+
+    return playField;
+  }
+
+  getState() {
+    const { x: pieceX, y: pieceY, blocks } = this.activePiece;
+    const playField = this.createPlayField();
+
+    for (let y = 0; y < this.playField.length; y++) {
+      playField[y] = [];
+      for (let x = 0; x < this.playField[y].length; x++) {
+        playField[y][x] = this.playField[y][x];
+      }
+    }
+
+    for (let y = 0; y < blocks.length; y++) {
+      for (let x = 0; x < blocks[y].length; x++) {
+        if (blocks[y][x]) {
+          playField[pieceY + y][pieceX + x] = blocks[y][x];
+        }
+      }
+    }
+
+    return { playField };
   }
 
   movePieceLeft() {
