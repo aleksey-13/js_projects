@@ -6,7 +6,7 @@ const root = document.getElementById("root");
 const game = new Game();
 
 const configPlayField = {
-  width: 320,
+  width: 480,
   height: 640,
   rows: 20,
   columns: 10,
@@ -21,19 +21,19 @@ document.addEventListener("keydown", (e) => {
   switch (e.keyCode) {
     case 37: // LEFT ARR
       game.movePieceLeft();
-      view.render(game.getState());
+      view.renderMainScreen(game.getState());
       break;
     case 38: // UP ARR
       game.rotatePiece();
-      view.render(game.getState());
+      view.renderMainScreen(game.getState());
       break;
     case 39: // RIGHT ARR
       game.movePieceRight();
-      view.render(game.getState());
+      view.renderMainScreen(game.getState());
       break;
     case 40: // RIGHT ARR
       game.movePieceDown();
-      view.render(game.getState());
+      view.renderMainScreen(game.getState());
       break;
   }
 });

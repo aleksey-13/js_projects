@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  /*margin: 0;*/
+  /*padding: 0;*/
 }
 
 body {
@@ -25,7 +25,6 @@ body {
 #root canvas {
   display: block;
   margin: 0 auto;
-  border: 4px solid #fff;
 }
 
 
