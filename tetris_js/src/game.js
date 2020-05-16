@@ -1,7 +1,6 @@
 export default class Game {
   score = 0;
   lines = 0;
-  level = 0;
   sizePlayField = {
     col: 10,
     row: 20,
@@ -9,6 +8,10 @@ export default class Game {
   playField = this.createPlayField();
   activePiece = this.createPiece();
   nextPiece = this.createPiece();
+
+  get level() {
+    return Math.floor(this.lines * 0.1);
+  }
 
   createPlayField() {
     const playField = [];
@@ -136,6 +139,8 @@ export default class Game {
       this.activePiece.y -= 1;
       this.lockPiece();
       this.updatePieces();
+      const clearedLines = this.clearLines();
+      this.updateScore(clearedLines);
     }
   }
 
@@ -232,6 +237,48 @@ export default class Game {
           this.playField[pieceY + y][pieceX + x] = blocks[y][x];
         }
       }
+    }
+  }
+
+  clearLines() {
+    const { row, col } = this.sizePlayField;
+    const lines = [];
+    for (let r = row - 1; r >= 0; r--) {
+      let counterBlocks = 0;
+
+      for (let c = 0; c < col; c++) {
+        if (this.playField[r][c]) {
+          counterBlocks++;
+        }
+      }
+      if (counterBlocks === 0) {
+        break;
+      }
+
+      if (counterBlocks === col) {
+        lines.unshift(r);
+      }
+    }
+
+    for (let index of lines) {
+      this.playField.splice(index, 1);
+      this.playField.unshift(new Array(col).fill(0));
+    }
+
+    return lines.length;
+  }
+
+  updateScore(clearedLines) {
+    const points = {
+      "1": 40,
+      "2": 100,
+      "3": 300,
+      "4": 1200,
+    };
+
+    if (clearedLines > 0) {
+      this.lines += clearedLines;
+      this.score += points[clearedLines] * (this.level + 1);
     }
   }
 
